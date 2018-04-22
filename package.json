@@ -2,6 +2,18 @@
   "name": "ngx-synaps-pics",
   "version": "0.1.0",
   "license": "MIT",
+  "author": {
+    "name": "Synaps",
+    "url": "https://github.com/synapshq"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/synapshq/ngx-synaps-pics.git"
+  },
+  "bugs": {
+    "url": "https://github.com/synapshq/ngx-synaps-pics/issues"
+  },
+  "homepage": "https://github.com/synapshq/ngx-synaps-pics#readme",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

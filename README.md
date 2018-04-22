@@ -1,27 +1,37 @@
-# NgxSynapsPics
+# ngx-synaps-pics
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
+Angular bindings for [Synaps.Pics](https://synaps.pics)
 
-## Development server
+## Installation
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+With npm:
+```
+npm i --save ngx-synaps-pics
+```
 
-## Code scaffolding
+With yarn:
+```
+yarn add ngx-synaps-pics
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Usage
 
-## Build
+Import `SynapsPicsModule` to your app.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+```ts
+import { SynapsPicsModule } from 'ngx-synaps-pics';
 
-## Running unit tests
+@NgModule{
+  ....
+  imports: [
+    ...,
+    SynapsPicsModule
+  ],
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Now you can use `synapsPics` directive in your templates.
 
-## Running end-to-end tests
+```html
+<img [synapsPics]="imageUrl" width="100" height="100" crop="fill">
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

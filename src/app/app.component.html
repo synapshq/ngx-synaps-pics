@@ -1,20 +1,120 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <h1>
-    Welcome to {{ title }}!
+    Synaps.Pics
   </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<p>Synaps.Pics is a image hosting and manipulation service. <em>ngx-synaps-pics</em> presents "synapsPics" directive for Angular apps to easily embed images to your applications with Synaps.pics</p>
 
+<!-- <img [synapsPics]="'https://img.synaps.pics/anon/509ee155da142b64796e89c6f1f05ce8.jpeg'" width="300" height="300" crop="fill"> -->
+
+<h2>Reference</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th width="150">command</th>
+            <th width="150">parameter</th>
+            <th width="150">example</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>width (w)</td>
+            <td>(integer)</td>
+            <td><img [synapsPics]="'https://img.synaps.pics/anon/image_bla.jpg'" width="80"></td>
+            <td>sets width (ex: w_500)</td>
+        </tr>
+        <tr>
+            <td>height (h)</td>
+            <td>(integer)</td>
+            <td><img [synapsPics]="'https://img.synaps.pics/anon/image_bla.jpg'" height="80"></td>
+            <td>sets height (ex: h_400)</td>
+        </tr>
+        <tr>
+            <td rowspan="5">crop (c)</td>
+            <td>fit <em>(default)</em></td>
+            <td><img [synapsPics]="'https://img.synaps.pics/anon/image_bla.jpg'" width="80" height="80" crop="fit"></td>
+            <td>The image is resized so that it takes up as much space as possible within a bounding box defined by the given width and height parameters. The original aspect ratio is retained and all of the original image is visible.</td>
+        </tr>
+        <tr>
+            <td>scale</td>
+            <td><img [synapsPics]="'https://img.synaps.pics/anon/image_bla.jpg'" width="80" height="80" crop="scale"></td>
+            <td>Change the size of the image exactly to the given width and height without necessarily retaining the original aspect ratio: all original image parts are visible but might be stretched or shrunk.</td>
+        </tr>
+        <tr>
+            <td>fill</td>
+            <td><img [synapsPics]="'https://img.synaps.pics/anon/image_bla.jpg'" width="80" height="80" crop="fill"></td>
+            <td>Same as the 'fit' mode but only if the original image is larger than the given limit (width and height), in which case the image is scaled down so that it takes up as much space as possible within a bounding box defined by the given width and height parameters. The original aspect ratio is retained and all of the original image is visible.</td>
+        </tr>
+        <tr>
+            <td>pad</td>
+            <td><img [synapsPics]="'https://img.synaps.pics/anon/image_bla.jpg'" width="80" height="80" crop="pad" bg="000000"></td>
+            <td>Resize the image to fill the given width and height while retaining the original aspect ratio. If the proportions of the original image do not match the given width and height, padding is added to the image to reach the required size.</td>
+        </tr>
+        <tr>
+            <td>limit</td>
+            <td><img [synapsPics]="'https://img.synaps.pics/anon/image_bla.jpg'" width="80" height="80" crop="limit"></td>
+            <td>Same as the 'fit' mode but only if the original image is larger than the given limit (width and height).</td>
+        </tr>
+        <tr>
+            <td>quality (q)</td>
+            <td>80 <em>(default)</em></td>
+            <td><img [synapsPics]="'https://img.synaps.pics/anon/w_80,h_80,q_40/image_bla.jpg'"></td>
+            <td>Output quality. 1 to 100.</td>
+        </tr>
+        <tr>
+            <td rowspan="9">gravity (g)</td>
+            <td>center <em>(default)</em></td>
+            <td><img [synapsPics]="'https://img.synaps.pics/anon/g_center/image_bla.jpg'" width="80" height="80" crop="fill"></td>
+            <td>The center of the image.</td>
+        </tr>
+        <tr>
+            <td>north_west or northwest</td>
+            <td><img [synapsPics]="'https://img.synaps.pics/anon/g_north_west/image_bla.jpg'" width="80" height="80" crop="fill"></td>
+            <td>North west corner (top left).</td>
+        </tr>
+        <tr>
+            <td>north_east or northeast</td>
+            <td><img [synapsPics]="'https://img.synaps.pics/anon/g_north_west/image_bla.jpg'" width="80" height="80" crop="fill"></td>
+            <td>North east corner (top right).</td>
+        </tr>
+        <tr>
+            <td>south_east or southeast</td>
+            <td><img [synapsPics]="'https://img.synaps.pics/anon/g_north_east/image_bla.jpg'" width="80" height="80" crop="fill"></td>
+            <td>South east corner (bottom right).</td>
+        </tr>
+        <tr>
+            <td>south_west or southwest</td>
+            <td><img [synapsPics]="'https://img.synaps.pics/anon/g_south_west/image_bla.jpg'" width="80" height="80" crop="fill"></td>
+            <td>South west corner (bottom left).</td>
+        </tr>
+        <tr>
+            <td>north</td>
+            <td><img [synapsPics]="'https://img.synaps.pics/anon/g_north/image_bla.jpg'" width="80" height="80" crop="fill"></td>
+            <td>North center part (top center).</td>
+        </tr>
+        <tr>
+            <td>west</td>
+            <td><img [synapsPics]="'https://img.synaps.pics/anon/g_west/image_bla.jpg'" width="80" height="80" crop="fill"></td>
+            <td>Middle west part (left).</td>
+        </tr>
+        <tr>
+            <td>east</td>
+            <td><img [synapsPics]="'https://img.synaps.pics/anon/g_east/image_bla.jpg'" width="80" height="80" crop="fill"></td>
+            <td>Middle east part (right).</td>
+        </tr>
+        <tr>
+            <td>south</td>
+            <td><img [synapsPics]="'https://img.synaps.pics/anon/g_south/image_bla.jpg'" width="80" height="80" crop="fill"></td>
+            <td>Middle south part (bottom center).</td>
+        </tr>
+        <tr>
+            <td>background (b)</td>
+            <td>rgb:ffffff <em>(default)</em></td>
+            <td><img [synapsPics]="'https://img.synaps.pics/anon/,b_rgb:ffffff/image_bla.jpg'" width="80" height="80" crop="pad"></td>
+            <td>Fill background color for <code>pad</code> crop style.</td>
+        </tr>
+    </tbody>
+</table>

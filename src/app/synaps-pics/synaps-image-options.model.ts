@@ -7,7 +7,8 @@ export enum Gravity {
   southeast = 'southeast',
   south = 'south',
   southwest = 'southwest',
-  west = 'west'
+  west = 'west',
+  auto = 'auto'
 }
 
 export class SynapsImageOptions {

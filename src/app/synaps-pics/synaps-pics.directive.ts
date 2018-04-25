@@ -4,6 +4,7 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
+import { Gravity } from './synaps-image-options.model';
 
 @Directive({
   selector: '[synapsPics]'
@@ -13,6 +14,9 @@ export class SynapsPicsDirective implements OnInit {
   @Input() height: number;
   @Input() crop: string;
   @Input() bg: string;
+  @Input() quality: number;
+  @Input() gravity: Gravity;
+  @Input() format: ['jpg', 'png', 'gif'];
 
   private _imageUrl: string;
   private _lazy: boolean = null;
@@ -21,17 +25,7 @@ export class SynapsPicsDirective implements OnInit {
   private _isLoadedSubject: Subject<boolean>;
   private _lazyObservable: Observable<boolean>;
   private isLoaded = false;
-
-  @Input('retina')
-  set retina(value: any) {
-    if (value !== 'false') {
-      this._dpi = 2;
-    }
-  }
-
-  get retina() {
-    return this._dpi === 2;
-  }
+  private elementId: string;
 
   @Input('lazy')
   set lazy(value: boolean) {
@@ -55,6 +49,18 @@ export class SynapsPicsDirective implements OnInit {
     if (this._lazy === null) {
       this._lazySubject.next(true);
     }
+  }
+
+  private makeid() {
+    console.log('id generating...');
+    let text = '_s';
+    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+    for (let i = 0; i < 5; i++) {
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    this.elementId = text;
+    this.el.nativeElement.setAttribute(text, '');
   }
 
   private inViewportSubject(): Subject<boolean> {
@@ -86,7 +92,34 @@ export class SynapsPicsDirective implements OnInit {
     return subject;
   }
 
-  private setImage(imageUrl: String) {
+  private addStyle(imageUrls) {
+    this.makeid();
+    // Fallback image
+    let css = `[${this.elementId}] {
+      background-image: url(${imageUrls[0]}) !important;
+     }`;
+
+    // High density versions
+    css += imageUrls.map((imageUrl, index) => {
+      return `@media (-webkit-min-device-pixel-ratio: ${index + 1}),
+       (min-resolution: ${index + 1}dppx) {
+         [${this.elementId}] {
+          background-image: url(${imageUrl}) !important;
+         }
+       }
+      `;
+    }).join('');
+
+    const head = document.head || document.getElementsByTagName('head')[0],
+          style = document.createElement('style');
+
+    style.type = 'text/css';
+    style.appendChild(document.createTextNode(css));
+
+    head.appendChild(style);
+  }
+
+  private setImage(imageUrls: string[]) {
     let targetAttr = 'src';
     const element = this.el.nativeElement;
     const attrs = element.attributes;
@@ -96,14 +129,17 @@ export class SynapsPicsDirective implements OnInit {
     }
 
     if ('as-attr' in attrs) {
-      targetAttr = attrs.asAttr;
+      targetAttr = element.getAttribute('as-attr');
     }
 
-    const showImage = function () {
+    const showImage = () => {
       if ('as-background' in attrs) {
-        element.style.backgroundImage = 'url(' + imageUrl + ')';
+        this.addStyle(imageUrls);
       } else {
-        element.setAttribute(targetAttr, imageUrl);
+        element.setAttribute(targetAttr, imageUrls[0]);
+        if (targetAttr === 'src') {
+          element.setAttribute('srcset', imageUrls.map((imageUrl, index) => `${imageUrl} ${index + 1}x`).join(', '));
+        }
       }
     };
 
@@ -134,18 +170,20 @@ export class SynapsPicsDirective implements OnInit {
     };
 
     if (this._imageUrl) {
-      const imageUrl = this.utils.getImageUrl({
+      const images = this.utils.getHDImages({
         path: getLocation(this._imageUrl).pathname,
         width: this.width,
         height: this.height,
-        retina: this.retina,
         crop: this.crop,
-        bg: this.bg
+        bg: this.bg,
+        quality: this.quality,
+        gravity: this.gravity,
+        format: this.format
       });
 
-      this.setImage(imageUrl);
+      this.setImage(images);
     } else {
-      this.setImage(placeholderUrl);
+      this.setImage([placeholderUrl]);
     }
 
   }

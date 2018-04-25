@@ -1,0 +1,9 @@
+.image-canvas {
+  height: 300px;
+  background: no-repeat;
+  background-size: contain;
+}
+
+td {
+  vertical-align: top;
+}

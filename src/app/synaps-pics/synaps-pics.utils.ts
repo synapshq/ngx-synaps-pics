@@ -13,10 +13,10 @@ export class SynapsPicsUtils {
   }
 
   public getImageUrl(options: SynapsImageOptions) {
-    const dpi = options.retina ? 2 : 1;
     const params = [];
+    options.dpi = options.dpi || 1;
 
-    const size = this.getSizeString(options.width, options.height, dpi);
+    const size = this.getSizeString(options.width, options.height, options.dpi);
 
     if (size) {
       params.push(size);
@@ -45,6 +45,13 @@ export class SynapsPicsUtils {
     return `${this.serviceUrl}${realPath}/` +
       (params.length > 0 ? params.join(',') + '/' : '') + fileName;
 
+  }
+
+  public getHDImages(options: SynapsImageOptions) {
+    return [1, 2, 3, 4].map((dpi) => {
+      options.dpi = dpi;
+      return this.getImageUrl(options);
+    });
   }
 
   public getPlaceholderUrl(width: number, height: number, dpi: number): string {

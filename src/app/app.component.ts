@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  imageUrl = 'https://img.synaps.pics/anon/image_bla.jpg';
 }

@@ -13,11 +13,12 @@ export enum Gravity {
 
 export class SynapsImageOptions {
   public path: string;
-  public retina?: boolean;
+  public dpi?: number;
   public width?: number;
   public height?: number;
   public crop?: string;
   public bg?: string;
   public quality?: number;
   public gravity?: Gravity;
+  public format?: ['jpg', 'png', 'gif'];
 }

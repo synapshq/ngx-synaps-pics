@@ -101,3 +101,7 @@ gravity | south | ![](https://img.synaps.pics/anon/w_80,h_80,c_fill,g_south/imag
 gravity | auto | ![](https://img.synaps.pics/anon/w_80,h_80,c_fill,g_auto/image_bla.jpg) | Smart cropping with feature detection.<br>```<img [synapsPics]="'/anon/image_bla.jpg'" width="80" height="80" crop="fill" gravity="auto">```
 background | ffffff | ![](https://img.synaps.pics/anon/w_80,h_80,c_pad,b_rgb:ffffff/image_bla.jpg) | Fill background color for `pad` crop style.<br>```<img [synapsPics]="'/anon/image_bla.jpg'" width="80" height="80" crop="pad" bg="ffffff">```
 format | jpg,png,gif | ![](https://img.synaps.pics/anon/w_80,h_80,f_gif/image_bla.jpg) | Set the output image format.<br>```<img [synapsPics]="'/anon/image_bla.jpg'" width="80" height="80" format="gif">```
+
+## Thanks
+
+Special thanks to [BrowserStack](https://www.browserstack.com) for their support about testing our work on multiple platforms.

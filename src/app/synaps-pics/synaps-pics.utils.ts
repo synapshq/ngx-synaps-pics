@@ -12,6 +12,12 @@ export class SynapsPicsUtils {
     this.serviceUrl = `${this.protocol}://${config.serviceUrl}/`;
   }
 
+  private getPath(url: string) {
+    const a = document.createElement('a');
+    a.href = url;
+    return a.pathname;
+  }
+
   public getImageUrl(options: SynapsImageOptions) {
     const params = [];
     options.dpi = options.dpi || 1;
@@ -38,7 +44,7 @@ export class SynapsPicsUtils {
       params.push('q_' + options.quality);
     }
 
-    const pathParts = options.path.replace(/^\/+|\/+$/, '').split('/');
+    const pathParts = this.getPath(options.path).replace(/^\/+|\/+$/, '').split('/');
     const fileName = pathParts.pop();
     const realPath = pathParts.join('/');
 

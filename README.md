@@ -1,5 +1,7 @@
 # ngx-synaps-pics
 
+![](https://badge.fury.io/js/ngx-synaps-pics.svg)
+
 Angular bindings for [Synaps.Pics](https://synaps.pics)
 
 ## Installation

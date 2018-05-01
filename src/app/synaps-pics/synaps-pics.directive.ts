@@ -52,7 +52,6 @@ export class SynapsPicsDirective implements OnInit {
   }
 
   private makeid() {
-    console.log('id generating...');
     let text = '_s';
     const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 

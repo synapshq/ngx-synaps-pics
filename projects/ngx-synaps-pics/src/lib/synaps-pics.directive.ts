@@ -1,9 +1,6 @@
 import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 import { SynapsPicsUtils } from './synaps-pics.utils';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/from';
+import { Subject, Observable, ReplaySubject, from } from 'rxjs';
 import { Gravity } from './synaps-image-options.model';
 
 @Directive({
@@ -36,11 +33,11 @@ export class SynapsPicsDirective implements OnInit {
   }
 
   constructor(private el: ElementRef, private utils: SynapsPicsUtils) {
-    this._lazyObservable =  Observable.from(this._lazySubject);
+    this._lazyObservable =  from(this._lazySubject);
     this._isLoadedSubject = new Subject();
 
     if ('lazy' in this.el.nativeElement.attributes) {
-      this._lazyObservable = Observable.from(this.inViewportSubject());
+      this._lazyObservable = from(this.inViewportSubject());
     }
 
   }

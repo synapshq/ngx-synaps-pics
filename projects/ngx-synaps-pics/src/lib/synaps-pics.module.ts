@@ -20,4 +20,14 @@ import { SynapsImageOptions } from './synaps-image-options.model';
   ]
 })
 export class SynapsPicsModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: SynapsPicsModule,
+      providers: [
+        SynapsPicsUtils,
+        SynapsImageOptions,
+        SynapsPicsConfig
+      ]
+    };
+  }
 }

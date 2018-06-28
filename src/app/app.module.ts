@@ -1,9 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { SynapsPicsModule } from './synaps-pics/synaps-pics.module';
-
+import { SynapsPicsModule } from 'ngx-synaps-pics';
 import { AppComponent } from './app.component';
-
 
 @NgModule({
   declarations: [
@@ -11,7 +9,7 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    SynapsPicsModule
+    SynapsPicsModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

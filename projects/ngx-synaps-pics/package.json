@@ -1,6 +1,19 @@
 {
   "name": "ngx-synaps-pics",
-  "version": "0.0.1",
+  "version": "0.3.0",
+  "license": "MIT",
+  "author": {
+    "name": "Synaps",
+    "url": "https://github.com/synapshq"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/synapshq/ngx-synaps-pics.git"
+  },
+  "bugs": {
+    "url": "https://github.com/synapshq/ngx-synaps-pics/issues"
+  },
+  "homepage": "https://github.com/synapshq/ngx-synaps-pics#readme",
   "peerDependencies": {
     "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
     "@angular/core": "^6.0.0-rc.0 || ^6.0.0"

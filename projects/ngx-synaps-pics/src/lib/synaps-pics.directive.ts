@@ -1,7 +1,8 @@
-import { Directive, ElementRef, Input, OnInit } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit, Inject } from '@angular/core';
 import { SynapsPicsUtils } from './synaps-pics.utils';
 import { Subject, Observable, ReplaySubject, from } from 'rxjs';
 import { Gravity } from './synaps-image-options.model';
+import { DOCUMENT } from '@angular/common';
 
 @Directive({
   selector: '[synapsPics]'
@@ -32,7 +33,7 @@ export class SynapsPicsDirective implements OnInit {
     }
   }
 
-  constructor(private el: ElementRef, private utils: SynapsPicsUtils) {
+  constructor(private el: ElementRef, private utils: SynapsPicsUtils, @Inject(DOCUMENT) private document: any) {
     this._lazyObservable =  from(this._lazySubject);
     this._isLoadedSubject = new Subject();
 
@@ -106,11 +107,11 @@ export class SynapsPicsDirective implements OnInit {
       `;
     }).join('');
 
-    const head = document.head || document.getElementsByTagName('head')[0],
-          style = document.createElement('style');
+    const head = this.document.head || this.document.getElementsByTagName('head')[0],
+          style = this.document.createElement('style');
 
     style.type = 'text/css';
-    style.appendChild(document.createTextNode(css));
+    style.appendChild(this.document.createTextNode(css));
 
     head.appendChild(style);
   }
@@ -159,15 +160,9 @@ export class SynapsPicsDirective implements OnInit {
       // self.setImage(placeholderUrl);
     });
 
-    const getLocation = (href) => {
-      const l = document.createElement('a');
-      l.href = href;
-      return l;
-    };
-
     if (this._imageUrl) {
       const images = this.utils.getHDImages({
-        path: getLocation(this._imageUrl).pathname,
+        path: this.utils.getPath(this._imageUrl),
         width: this.width,
         height: this.height,
         crop: this.crop,

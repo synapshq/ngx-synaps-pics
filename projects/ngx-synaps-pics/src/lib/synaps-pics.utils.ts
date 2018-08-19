@@ -1,6 +1,8 @@
-import { Injectable, Optional } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { SynapsPicsConfig } from './synaps-pics.config';
 import { SynapsImageOptions } from './synaps-image-options.model';
+import * as URL from 'url-parse';
+
 
 @Injectable()
 export class SynapsPicsUtils {
@@ -12,13 +14,15 @@ export class SynapsPicsUtils {
     this.serviceUrl = `${this.protocol}://${config.serviceUrl}/`;
   }
 
-  private getPath(url: string) {
-    const a = document.createElement('a');
-    a.href = url;
-    return a.pathname;
+  public getLocation(url: string) {
+    return URL(url, this.serviceUrl);
   }
 
-  public getImageUrl(options: SynapsImageOptions) {
+  public getPath(url: string): string {
+    return this.getLocation(url).pathname;
+  }
+
+  public getImageUrl(options: SynapsImageOptions): string {
     const params = [];
     options.dpi = options.dpi || 1;
 
@@ -44,6 +48,10 @@ export class SynapsPicsUtils {
       params.push('q_' + options.quality);
     }
 
+    if (options.format) {
+      params.push('f_' + options.format);
+    }
+
     const pathParts = this.getPath(options.path).replace(/^\/+|\/+$/, '').split('/');
     const fileName = pathParts.pop();
     const realPath = pathParts.join('/');
@@ -53,7 +61,7 @@ export class SynapsPicsUtils {
 
   }
 
-  public getHDImages(options: SynapsImageOptions) {
+  public getHDImages(options: SynapsImageOptions): string[] {
     return [1, 2, 3, 4].map((dpi) => {
       options.dpi = dpi;
       return this.getImageUrl(options);

@@ -1,8 +1,8 @@
-import { Directive, ElementRef, Input, OnInit, Inject } from '@angular/core';
-import { SynapsPicsUtils } from './synaps-pics.utils';
-import { Subject, Observable, ReplaySubject, from } from 'rxjs';
-import { Gravity } from './synaps-image-options.model';
 import { DOCUMENT } from '@angular/common';
+import { Directive, ElementRef, Inject, Input, OnInit } from '@angular/core';
+import { from, Observable, ReplaySubject, Subject } from 'rxjs';
+import { Gravity } from './synaps-image-options.model';
+import { SynapsPicsUtils } from './synaps-pics.utils';
 
 @Directive({
   selector: '[synapsPics]'

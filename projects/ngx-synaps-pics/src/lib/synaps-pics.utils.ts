@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { SynapsPicsConfig } from './synaps-pics.config';
 import { SynapsImageOptions } from './synaps-image-options.model';
-import * as URL from 'url-parse';
-
+import { SynapsPicsConfig } from './synaps-pics.config';
 
 @Injectable()
 export class SynapsPicsUtils {
@@ -15,11 +13,13 @@ export class SynapsPicsUtils {
   }
 
   public getLocation(url: string) {
-    return URL(url, this.serviceUrl);
+    // return new URL(url, this.serviceUrl);
+    return `${this.serviceUrl}${url}`;
   }
 
   public getPath(url: string): string {
-    return this.getLocation(url).pathname;
+    // return this.getLocation(url).pathname;
+    return url;
   }
 
   public getImageUrl(options: SynapsImageOptions): string {

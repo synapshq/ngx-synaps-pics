@@ -1,14 +1,8 @@
-import {
-  async,
-  ComponentFixture,
-  TestBed
-} from '@angular/core/testing';
-
-import { By } from '@angular/platform-browser';
-
-import { SynapsPicsModule } from './synaps-pics.module';
-import { SynapsPicsDirective } from './synaps-pics.directive';
 import { Component } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { SynapsPicsModule } from './synaps-pics.module';
+
 
 @Component({
   template: `<img [synapsPics]="imageUrl">`

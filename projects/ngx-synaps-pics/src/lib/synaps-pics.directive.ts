@@ -1,5 +1,4 @@
-import { DOCUMENT } from '@angular/common';
-import { Directive, ElementRef, Inject, Input, OnInit } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { from, Observable, ReplaySubject, Subject } from 'rxjs';
 import { Gravity } from './synaps-image-options.model';
 import { SynapsPicsUtils } from './synaps-pics.utils';
@@ -33,7 +32,7 @@ export class SynapsPicsDirective implements OnInit {
     }
   }
 
-  constructor(private el: ElementRef, private utils: SynapsPicsUtils, @Inject(DOCUMENT) private document: any) {
+  constructor(private el: ElementRef, private utils: SynapsPicsUtils, private renderer: Renderer2) {
     this._lazyObservable =  from(this._lazySubject);
     this._isLoadedSubject = new Subject();
 
@@ -107,13 +106,13 @@ export class SynapsPicsDirective implements OnInit {
       `;
     }).join('');
 
-    const head = this.document.head || this.document.getElementsByTagName('head')[0],
-          style = this.document.createElement('style');
+    const head = this.renderer.selectRootElement('head');
+    const style = this.renderer.createElement('style');
 
-    style.type = 'text/css';
-    style.appendChild(this.document.createTextNode(css));
+    this.renderer.setAttribute(style, 'type', 'text/css');
+    this.renderer.appendChild(style, this.renderer.createText(css));
 
-    head.appendChild(style);
+    this.renderer.appendChild(head, style);
   }
 
   private setImage(imageUrls: string[]) {

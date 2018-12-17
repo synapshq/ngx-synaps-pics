@@ -106,7 +106,7 @@ export class SynapsPicsDirective implements OnInit {
       `;
     }).join('');
 
-    const head = this.renderer.selectRootElement('head');
+    const head = document.querySelector('head');
     const style = this.renderer.createElement('style');
 
     this.renderer.setAttribute(style, 'type', 'text/css');

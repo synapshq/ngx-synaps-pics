@@ -13,13 +13,11 @@ export class SynapsPicsUtils {
   }
 
   public getLocation(url: string) {
-    // return new URL(url, this.serviceUrl);
-    return `${this.serviceUrl}${url}`;
+    return new URL(url, this.serviceUrl);
   }
 
   public getPath(url: string): string {
-    // return this.getLocation(url).pathname;
-    return url;
+    return this.getLocation(url).pathname;
   }
 
   public getImageUrl(options: SynapsImageOptions): string {

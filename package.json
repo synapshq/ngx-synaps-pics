@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod ngx-synaps-pics",
+    "build": "ng build --prod ngx-synaps-pics && cp README.md LICENSE CHANGELOG.md ./dist/ngx-synaps-pics/.",
     "test": "ng test ngx-synaps-pics --no-watch",
     "lint": "ng lint ngx-synaps-pics",
     "package": "npm publish dist/ngx-synaps-pics",

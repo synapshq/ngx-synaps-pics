@@ -1,25 +1,21 @@
-sudo: required
-dist: trusty
-addons:
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable
 language: node_js
 node_js:
-  - node
+  - 10
+  - 8
+
+install:
+  - travis_retry npm install
+
 script:
   - npm run test
   - npm run build
-  - npm run package
-before_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - sleep 3
-cache:
-  yarn: true
-notifications:
-  email: false
+
 after_success:
   - npm run codecov
+
+jobs:
+  include:
+    - stage: release
+      node_js: lts/*
+      script:
+        - npm run semantic-release

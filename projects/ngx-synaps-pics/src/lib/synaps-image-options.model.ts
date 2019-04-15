@@ -20,5 +20,5 @@ export class SynapsImageOptions {
   public bg?: string;
   public quality?: number;
   public gravity?: Gravity;
-  public format?: ['jpg', 'png', 'gif'];
+  public format?: ['jpg', 'png', 'gif', 'webp'];
 }

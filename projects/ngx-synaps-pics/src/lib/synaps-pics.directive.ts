@@ -13,7 +13,7 @@ export class SynapsPicsDirective implements OnInit {
   @Input() bg: string;
   @Input() quality: number;
   @Input() gravity: Gravity;
-  @Input() format: ['jpg', 'png', 'gif'];
+  @Input() format: ['jpg', 'png', 'gif', 'webp'];
 
   private _imageUrl: string;
   private _lazy: boolean = null;

@@ -8,6 +8,10 @@
     "test": "ng test ngx-synaps-pics --no-watch",
     "lint": "ng lint ngx-synaps-pics",
     "package": "npm publish dist/ngx-synaps-pics",
+    "publish-npm": "npm publish ./dist/ngx-synaps-pics",
+    "publish:beta": "npm publish --tag=next ./dist/ngx-synaps-pics",
+    "semantic-release-pre": "semantic-release pre",
+    "semantic-release-post": "semantic-release post",
     "e2e": "ng e2e",
     "semantic-release": "semantic-release"
   },
